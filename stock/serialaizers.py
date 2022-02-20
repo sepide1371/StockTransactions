@@ -33,6 +33,7 @@ class TradeInfoSerializer(DynamicFieldsSerializer):
 class GetStockInfoOutputSerializer(DynamicFieldsSerializer):
     hEven = serializers.IntegerField()
     pTran = serializers.FloatField()
+    qTitTran = serializers.IntegerField()
 
 
 # class testSerializer(DynamicFieldsSerializer):

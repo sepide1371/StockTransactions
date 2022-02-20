@@ -22,14 +22,14 @@ class GetTradeInfo(APIView):
         res_text, res = ws.trade_info(valid_input.get("date"))
         if res['tradeHistory']:
             serializer_output = serial.GetStockInfoOutputSerializer(res['tradeHistory'], many=True, read_only=True)
-            csv_header = ['hEven', 'pTran']
+            csv_header = ['hEven', 'pTran', 'qTitTran']
             file_name = str(valid_input.get("date")) + '-trade.csv'
-            completeName = os.path.join('TradeFiles/', file_name)
             with open(file_name, 'w', encoding='UTF8', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow(csv_header)
                 for item in serializer_output.data:
-                    data = [item["hEven"], item["pTran"]]
+                    print(item)
+                    data = [item["hEven"], item["pTran"], item["qTitTran"]]
                     writer.writerow(data)
             msg = {
                 "message": "the information was successfully saved in {}".format(file_name)
@@ -45,13 +45,11 @@ class TradeInfo(APIView):
     @swagger_auto_schema(methods=['post'], request_body=serial.TradeInfoSerializer)
     @action(detail=False, methods=['post'])
     def post(self, request):
-        print(request.data)
         selected_date = request.data
         serializer = serial.TradeInfoSerializer(data=selected_date)
         serializer.is_valid(raise_exception=True)
         valid_input = serializer.validated_data
         file_name = str(valid_input.get("date")) + '-trade.csv'
-        print(file_name)
         try:
             file = open(file_name)
         except:
@@ -65,17 +63,27 @@ class TradeInfo(APIView):
         with open(file_name, 'r') as f:
             next(f)
             total_p = 0
+            total_q = 0
             for row in csv.reader(f):
                 try:
-                    value = float(row[1])
+                    p_value = float(row[1])
                 except ValueError:
-                    value = 0
-                total_p += value
-            print('The total is {}'.format(total_p))
+                    p_value = 0
+                try:
+                    q_value = int(row[2])
+                except ValueError:
+                    q_value = 0
+                total_p += p_value
+                total_q += q_value
+            print('The pTrad total is {}'.format(total_p))
+            print('The qTitTrad total is {}'.format(total_q))
         avg_p = total_p/lines
+        avg_q = total_q/lines
         msg = {
             "num_items": lines,
             "pTranSUM": total_p,
             "pTranAVG": avg_p,
+            "qTitTranSUM": total_q,
+            "qTitTranAVG": avg_q,
         }
         return CustomResponse(msg, 0, msg_status=0)
