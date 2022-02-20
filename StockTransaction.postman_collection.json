@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "c8f35480-017c-438d-b568-ab9fb3321a62",
+		"name": "StockTransaction",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetInfo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"20220219\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostUrl}}/get-info/",
+					"host": [
+						"{{hostUrl}}"
+					],
+					"path": [
+						"get-info",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TradeInfo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"20220219\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostUrl}}/trade-info/",
+					"host": [
+						"{{hostUrl}}"
+					],
+					"path": [
+						"trade-info",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "hostUrl",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}
