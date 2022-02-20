@@ -75,6 +75,7 @@ class TradeInfo(APIView):
         avg_p = total_p/lines
         msg = {
             "num_items": lines,
+            "pTranSUM": total_p,
             "pTranAVG": avg_p,
         }
         return CustomResponse(msg, 0, msg_status=0)
