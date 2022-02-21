@@ -3,6 +3,7 @@ import os
 
 from django.http import HttpResponse
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_200_OK
 from rest_framework.views import APIView
 from rest_framework.decorators import action
 
@@ -17,7 +18,12 @@ class GetTradeInfo(APIView):
     def post(self, request):
         selected_date = request.data
         serializer = serial.TradeInfoSerializer(data=selected_date)
-        serializer.is_valid(raise_exception=True)
+        if not serializer.is_valid():
+            msg = {
+                "errors": serializer.errors
+            }
+            return CustomResponse(msg, 2, msg_status=HTTP_400_BAD_REQUEST)
+        serializer.is_valid()
         valid_input = serializer.validated_data
         res = ws.trade_info(valid_input.get("date"))
         if res['tradeHistory']:
@@ -34,11 +40,11 @@ class GetTradeInfo(APIView):
             msg = {
                 "message": "the information was successfully saved in {}".format(file_name)
             }
-            return CustomResponse(msg, 0, msg_status=0)
+            return CustomResponse(msg, 0, msg_status=HTTP_200_OK)
         msg = {
             "message": "no information found for {}".format(valid_input.get("date"))
         }
-        return CustomResponse(msg, 3, msg_status=0)
+        return CustomResponse(msg, 3, msg_status=HTTP_200_OK)
 
 
 class TradeInfo(APIView):
@@ -47,7 +53,12 @@ class TradeInfo(APIView):
     def post(self, request):
         selected_date = request.data
         serializer = serial.TradeInfoSerializer(data=selected_date)
-        serializer.is_valid(raise_exception=True)
+        if not serializer.is_valid():
+            msg = {
+                "errors": serializer.errors
+            }
+            return CustomResponse(msg, 2, msg_status=HTTP_400_BAD_REQUEST)
+        serializer.is_valid()
         valid_input = serializer.validated_data
         file_name = str(valid_input.get("date")) + '-trade.csv'
         try:
@@ -56,7 +67,7 @@ class TradeInfo(APIView):
             msg = {
                     "message": "file not found for {}".format(valid_input.get("date"))
                 }
-            return CustomResponse(msg, 3, msg_status=0)
+            return CustomResponse(msg, 3, msg_status=HTTP_200_OK)
 
         reader = csv.reader(file)
         lines = len(list(reader))-1
@@ -86,4 +97,4 @@ class TradeInfo(APIView):
             "qTitTranSUM": total_q,
             "qTitTranAVG": avg_q,
         }
-        return CustomResponse(msg, 0, msg_status=0)
+        return CustomResponse(msg, 0, msg_status=HTTP_200_OK)

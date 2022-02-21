@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'stock.apps.StockConfig',
     'rest_framework',
     'drf_yasg',
-    'oauth2_provider',
+    # 'oauth2_provider',
 ]
 
 MIDDLEWARE = [
@@ -51,29 +51,25 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'oauth2_provider.middleware.OAuth2TokenMiddleware',
+    # 'oauth2_provider.middleware.OAuth2TokenMiddleware',
 ]
 
-OAUTH2_PROVIDER = {
-    # this is the list of available scopes
-    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'},
-    'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore',
-}
+# OAUTH2_PROVIDER = {
+#     # this is the list of available scopes
+#     'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'},
+#     'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore',
+# }
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    # ],
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ),
 
     'DATE_INPUT_FORMATS': ['%Y%m%d'],
 }
-
-
-
-
 
 ROOT_URLCONF = 'StockTransactions.urls'
 
