@@ -19,7 +19,7 @@ class GetTradeInfo(APIView):
         serializer = serial.TradeInfoSerializer(data=selected_date)
         serializer.is_valid(raise_exception=True)
         valid_input = serializer.validated_data
-        res_text, res = ws.trade_info(valid_input.get("date"))
+        res = ws.trade_info(valid_input.get("date"))
         if res['tradeHistory']:
             serializer_output = serial.GetStockInfoOutputSerializer(res['tradeHistory'], many=True, read_only=True)
             csv_header = ['hEven', 'pTran', 'qTitTran']
