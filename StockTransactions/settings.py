@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'stock.apps.StockConfig',
     'rest_framework',
     'drf_yasg',
-    # 'oauth2_provider',
+    'oauth2_provider',
 ]
 
 MIDDLEWARE = [
@@ -51,22 +51,22 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'oauth2_provider.middleware.OAuth2TokenMiddleware',
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',
 ]
 
-# OAUTH2_PROVIDER = {
-#     # this is the list of available scopes
-#     'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'},
-#     'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore',
-# }
+OAUTH2_PROVIDER = {
+    # this is the list of available scopes
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'},
+    'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore',
+}
 
 REST_FRAMEWORK = {
-    # 'DEFAULT_AUTHENTICATION_CLASSES': [
-    #     'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-    # ],
-    # 'DEFAULT_PERMISSION_CLASSES': (
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
 
     'DATE_INPUT_FORMATS': ['%Y%m%d'],
 }
@@ -91,7 +91,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'StockTransactions.wsgi.application'
 
-
+SWAGGER_SETTINGS = {
+    'SUPPORTED_SUBMIT_METHODS': ['get', 'post'],  # Due to bug described above
+    'SECURITY_DEFINITIONS': {
+        "customers_auth": {
+            "type": "oauth2",
+            "tokenUrl": "/oauth/token/",
+            "flow": "password",
+            "scopes": {
+                "read": "Read scope",
+                "write": "Write scope"
+            }
+        }
+    },
+}
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -140,3 +153,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "GetInfo",
+			"name": "GetToken",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -18,7 +18,247 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"date\": \"20220219\"\r\n}",
+					"raw": "{\r\n    \r\n    \"client_id\": \"g1WHTqymx0t4hiOFvo8DjKfHu6ZwiBDgyRbVxgvK\",\r\n    \"grant_type\": \"password\",\r\n    \"username\":\"trade\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostUrl}}/oauth/token/",
+					"host": [
+						"{{hostUrl}}"
+					],
+					"path": [
+						"oauth",
+						"token",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GetToken",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"client_id\": \"g1WHTqymx0t4hiOFvo8DjKfHu6ZwiBDgyRbVxgvK\",\r\n    \"grant_type\": \"password\",\r\n    \"username\":\"trade\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostUrl}}/oauth/token/",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"oauth",
+								"token",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 21 Feb 2022 10:13:52 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.6.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Vary",
+							"value": "Authorization"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "176"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"ht1XlWhWb8xJgBCwBPUoS2skGBbSKB\",\n    \"expires_in\": 36000,\n    \"token_type\": \"Bearer\",\n    \"scope\": \"read write groups\",\n    \"refresh_token\": \"ArR9kcwRdlD6qHuclOF0IjP7QNXgY5\"\n}"
+				}
+			]
+		},
+		{
+			"name": "RefreshToken",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n    \"client_id\": \"g1WHTqymx0t4hiOFvo8DjKfHu6ZwiBDgyRbVxgvK\",\r\n    \"grant_type\": \"refresh_token\",\r\n    \"refresh_token\": \"ArR9kcwRdlD6qHuclOF0IjP7QNXgY5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostUrl}}/oauth/token/",
+					"host": [
+						"{{hostUrl}}"
+					],
+					"path": [
+						"oauth",
+						"token",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "RefreshToken",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"client_id\": \"g1WHTqymx0t4hiOFvo8DjKfHu6ZwiBDgyRbVxgvK\",\r\n    \"grant_type\": \"refresh_token\",\r\n    \"refresh_token\": \"ArR9kcwRdlD6qHuclOF0IjP7QNXgY5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostUrl}}/oauth/token/",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"oauth",
+								"token",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 21 Feb 2022 10:17:06 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.6.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-store"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Vary",
+							"value": "Authorization"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "176"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"JfHeaXPjXuMDPGgMo22eNL2pEqaeEa\",\n    \"expires_in\": 36000,\n    \"token_type\": \"Bearer\",\n    \"scope\": \"read write groups\",\n    \"refresh_token\": \"egjukzWX9J3BsqKak8nHHYY4UD5Pd2\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GetInfo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"20220214\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -36,11 +276,182 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "GetInfo-Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20220214\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostUrl}}/get-info/",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"get-info",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 22 Feb 2022 15:02:54 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.6.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Authorization, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "165"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Header\": {\n        \"Status\": 200,\n        \"Message\": \"Successful Operation\",\n        \"MessageCode\": 0\n    },\n    \"ContentData\": {\n        \"message\": \"the information was successfully saved in 2022-02-14-trade.csv\"\n    }\n}"
+				},
+				{
+					"name": "GetInfo-NotFound",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20220215\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostUrl}}/get-info/",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"get-info",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 22 Feb 2022 15:21:32 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.6.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Authorization, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "127"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Header\": {\n        \"Status\": 200,\n        \"Message\": \"Not Found\",\n        \"MessageCode\": 3\n    },\n    \"ContentData\": {\n        \"message\": \"no information found for 2022-02-15\"\n    }\n}"
+				}
+			]
 		},
 		{
 			"name": "TradeInfo",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
@@ -51,7 +462,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"date\": \"20220219\"\r\n}",
+					"raw": "{\r\n    \"date\": \"20220214\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -69,7 +480,158 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "TradeInfo-Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20220214\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostUrl}}/trade-info/",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"trade-info",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 22 Feb 2022 15:22:28 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.6.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Authorization, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "215"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Header\": {\n        \"Status\": 200,\n        \"Message\": \"Successful Operation\",\n        \"MessageCode\": 0\n    },\n    \"ContentData\": {\n        \"num_items\": 6020,\n        \"pTranSUM\": 12154158,\n        \"pTranAVG\": 2018.9631229235881,\n        \"qTitTranSUM\": 208622122,\n        \"qTitTranAVG\": 34654.83754152824\n    }\n}"
+				},
+				{
+					"name": "TradeInfo-NotFound",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"20220215\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostUrl}}/trade-info/",
+							"host": [
+								"{{hostUrl}}"
+							],
+							"path": [
+								"trade-info",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 22 Feb 2022 15:23:24 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "WSGIServer/0.2 CPython/3.6.10"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Authorization, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "121"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Header\": {\n        \"Status\": 200,\n        \"Message\": \"Not Found\",\n        \"MessageCode\": 3\n    },\n    \"ContentData\": {\n        \"message\": \"file not found for 2022-02-15\"\n    }\n}"
+				}
+			]
 		}
 	],
 	"event": [
@@ -96,6 +658,11 @@
 		{
 			"key": "hostUrl",
 			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "DkfL1b07evV6NE9DQxp8t6Xkt8m16s",
 			"type": "string"
 		}
 	]

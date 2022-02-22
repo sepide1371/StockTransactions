@@ -9,6 +9,7 @@ from rest_framework.decorators import action
 
 import stock.serialaizers as serial
 import stock.webservices as ws
+from StockTransactions import settings
 from StockTransactions.utils import CustomResponse
 
 
@@ -30,7 +31,8 @@ class GetTradeInfo(APIView):
             serializer_output = serial.GetStockInfoOutputSerializer(res['tradeHistory'], many=True, read_only=True)
             csv_header = ['hEven', 'pTran', 'qTitTran']
             file_name = str(valid_input.get("date")) + '-trade.csv'
-            with open(file_name, 'w', encoding='UTF8', newline='') as f:
+            csv_path = settings.MEDIA_ROOT + '/TradeFiles/' + file_name
+            with open(csv_path, 'w', encoding='UTF8', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerow(csv_header)
                 for item in serializer_output.data:
@@ -61,8 +63,9 @@ class TradeInfo(APIView):
         serializer.is_valid()
         valid_input = serializer.validated_data
         file_name = str(valid_input.get("date")) + '-trade.csv'
+        csv_path = settings.MEDIA_ROOT + '/TradeFiles/' + file_name
         try:
-            file = open(file_name)
+            file = open(csv_path)
         except:
             msg = {
                     "message": "file not found for {}".format(valid_input.get("date"))
@@ -71,7 +74,7 @@ class TradeInfo(APIView):
 
         reader = csv.reader(file)
         lines = len(list(reader))-1
-        with open(file_name, 'r') as f:
+        with open(csv_path, 'r') as f:
             next(f)
             total_p = 0
             total_q = 0
