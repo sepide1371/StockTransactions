@@ -35,6 +35,3 @@ class GetStockInfoOutputSerializer(DynamicFieldsSerializer):
     pTran = serializers.FloatField()
     qTitTran = serializers.IntegerField()
 
-
-# class testSerializer(DynamicFieldsSerializer):
-#     tradeHistory = serializers.ListField(child=GetStockInfoOutputSerializer(many=True))
