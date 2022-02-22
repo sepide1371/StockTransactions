@@ -14,7 +14,7 @@
 
 
 **SUPER USER INFOS**\
-test super user info 
+test super user info \
     username: "trade", \
     password: "123", \
     client_id: "g1WHTqymx0t4hiOFvo8DjKfHu6ZwiBDgyRbVxgvK", \
